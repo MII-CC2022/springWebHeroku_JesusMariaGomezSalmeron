@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Index</title>
+    </head>
+    
+    <body>
+        <h1>Inicio v.2, editada por Jesus Maria</h1>
+        <p th:text="${mensaje}"></p>
+
+        <p><a th:href="@{/add}">Añadir Usuario</a></p>
+       
+       <table th:if="${usuarios!=null and !usuarios.empty}">
+    	<tr>
+    	  <th>Nombre</th>
+    	  <th>Correo</th>
+    	  <th>Acciones</th>
+    	</tr>
+    	<tr th:each="usuario : ${usuarios}">
+          <td th:text="${usuario.nombre}">Nombre Persona</td>
+    	  <td th:text="${usuario.email}">Correo Persona</td>
+    	  <td>
+    	      <a th:href="@{/edit/} + ${usuario.id}" th:text="Editar">Editar</a> | 
+    	      <a th:href="@{/delete(id=${usuario.id})}" th:text="Eliminar">Eliminar</a>
+    	  </td>
+    	</tr>
+    	</table>
+    	<p th:if="${usuarios==null or usuarios.empty}">No hay usuarios</p>	
+	
+	</body>
+</html>
